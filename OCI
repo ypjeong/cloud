@@ -1,0 +1,75 @@
+▶ ssh 연결
+ssh -i /d/oci/.ssh/id_rsa opc@129.213.116.28
+
+ssh -t -o ProxyCommand='ssh -i /d/oci/.ssh/id_rsa opc@129.213.116.28 -W %h:%p %r' -i /d/oci/.ssh/id_rsa opc@10.0.3.3
+
+Start-Job { Echo N | plink.exe -i $env:homedrive$env:homepath\oci\console.ppk -N -ssh -P 443 -l ocid1.instanceconsoleconnection.oc1.iad.anuwcljr4ntes5qcjlxzgmkxqbd6ntx24dul5gyhmijwzhz6zqtiywvkfura -L 5905:ocid1.instance.oc1.iad.anuwcljr4ntes5qcxwuk4esww6rpa7ryy66ouvuuw7llcxrb5u2cy2ixsa7a:5905 instance-console.us-ashburn-1.oraclecloud.com }; sleep 5; plink.exe -i $env:homedrive$env:homepath\oci\console.ppk -N -L 5900:localhost:5900 -P 5905 localhost -l ocid1.instance.oc1.iad.anuwcljr4ntes5qcxwuk4esww6rpa7ryy66ouvuuw7llcxrb5u2cy2ixsa7a
+
+
+D:\OCI\.ssh\mykey.ppk
+▶ oracle 환경 설정
+
+orapwd 로 수정함.
+sqlplus sys/gosea1234 as sysdba
+
+
+▶ timezone 변경
+ln -s /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+
+출처: https://ora-sysdba.tistory.com/entry/Cloud-Computing-Amazon-EC2-인스턴스의-TIMEZONE-변경 [Welcome To Ora-SYSDBA]
+
+▶ 11 database
+
+ssh -i /d/oci/.ssh/id_rsa opc@132.145.92.69
+
+
+▶ window
+
+Start-Job { Echo N | plink.exe -i $env:homedrive$env:homepath\oci\console.ppk -N -ssh -P 443 -l ocid1.instanceconsoleconnection.oc1.ap-seoul-1.anuwgljr22iureqcpuzma67dxqminw76ta4f7fq4fy5yaidp2q6co6nxxgjq -L 22000:ocid1.instance.oc1.ap-seoul-1.anuwgljr22iureqcnfcpxmfbrr5fkz5k5t4un4dlqzbypb7x3a3i7p52475a:22 instance-console.ap-seoul-1.oraclecloud.com }; sleep 5; plink.exe -i $env:homedrive$env:homepath\oci\console.ppk -P 22000 localhost -l ocid1.instance.oc1.ap-seoul-1.anuwgljr22iureqcnfcpxmfbrr5fkz5k5t4un4dlqzbypb7x3a3i7p52475a
+
+Start-Job { Echo N | plink.exe -i $env:homedrive$env:homepath\oci\console.ppk -N -ssh -P 443 -l ocid1.instanceconsoleconnection.oc1.ap-seoul-1.anuwgljr22iureqcpuzma67dxqminw76ta4f7fq4fy5yaidp2q6co6nxxgjq -L 5905:ocid1.instance.oc1.ap-seoul-1.anuwgljr22iureqcnfcpxmfbrr5fkz5k5t4un4dlqzbypb7x3a3i7p52475a:5905 instance-console.ap-seoul-1.oraclecloud.com }; sleep 5; plink.exe -i $env:homedrive$env:homepath\oci\console.ppk -N -L 5900:localhost:5900 -P 5905 localhost -l ocid1.instance.oc1.ap-seoul-1.anuwgljr22iureqcnfcpxmfbrr5fkz5k5t4un4dlqzbypb7x3a3i7p52475a
+132.145.91.73
+
+
+9월 29일 (일) 오후 8:15
+
+10월 2일 (수) 오전 3:01 (2일 전)
+10월 2일 (수) 오전 3:35 (2일 전)
+
+
+ssh -i /d/oci/.ssh/id_rsa opc@129.213.63.76
+
+inst-prod-web01  --> 공용IP
+inst-prod-was01
+
+OCI 기반 3-tier 아키텍처 구성
+- 목표구성도
+- 아키텍처 구성조건
+- 작업절차
+. 계정생성 -> 기존 TEC 참조
+. compartment(구획) 생성
+. VCN 
+  . Subnet 구성
+  . WEB, WAS, 구성
+  . LOAD Balancer 구성
+  . NAT 구성
+  . 인터넷게이트웨이 구성
+  . 백업구성
+    오브젝트 스토리지
+    서비스 케이트웨이
+
+  
+- 참조문서
+
+
+Resources
+Subnets
+Route Tables
+Internet Gateways
+Dynamic Routing Gateways
+Network Security Groups
+Security Lists
+DHCP Options
+Local Peering Gateways
+NAT Gateways
+Service Gateways
